@@ -8,8 +8,6 @@ public class JWMove : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	private Rigidbody rb;
-
 	private Vector2 direction;
 	[SerializeField] private float moveSpeed;
 	private float turnSmoothTime = 0;
@@ -24,10 +22,6 @@ public class JWMove : MonoBehaviour
 	#endregion
 
 	#region PrivateMethod
-	private void OnEnable()
-	{
-		TryGetComponent(out rb);
-	}
 	private void FixedUpdate()
 	{
 		MoveCharacter();

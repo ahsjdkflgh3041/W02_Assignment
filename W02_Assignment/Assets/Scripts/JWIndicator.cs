@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class JWIndicator : MonoBehaviour
 {
@@ -42,10 +44,12 @@ public class JWIndicator : MonoBehaviour
 	}
 	private Vector3 GetGroundPosition()
 	{
-		RaycastHit[] hit = Physics.RaycastAll(transform.position, Vector3.down, float.MaxValue, 1 << LayerMask.NameToLayer("Ground"));
-		if(hit.Length > 0)
+		RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.down, float.MaxValue, 1 << LayerMask.NameToLayer("Ground"))
+			.OrderBy(hit => hit.distance)
+			.ToArray();
+		if(hits.Length > 0)
 		{
-			return hit[hit.Length - 1].point;
+			return hits[0].point;
 		}
 		return Vector3.zero;
 	}

@@ -21,6 +21,7 @@ public class JWJump : MonoBehaviour
 	{
 		if (isOnAir == true)
 			return;
+		isOnAir = true;
 		rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
 	}
 	#endregion
