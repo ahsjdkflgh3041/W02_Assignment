@@ -34,7 +34,7 @@ public class JWPlayer : MonoBehaviour
 	}
 	private void OnJump(InputValue value)
 	{
-		jump.Jump();
+		jump.Jump();jump.TryToJump(value.Get<float>());
 	}
 	private void OnDash(InputValue value)
 	{
