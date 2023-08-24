@@ -62,6 +62,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
+        SetHorizontalVelocity();
+        SetVerticalVelocity();
+
         if (onDash && countDash < 1 && isReady)  //대쉬 누르면 
         {
             DashFunction();  // 대쉬
@@ -73,14 +76,12 @@ public class CharacterMovement : MonoBehaviour
             countDash = 0;   // 땅에 떨어지면 대쉬 카운트 초기화
 
         }
-        SetHorizontalVelocity();
-        SetVerticalVelocity();
 
         controller.Move(currentVelocity * Time.deltaTime);
     }
     private void SetHorizontalVelocity()
     {
-        Vector3 inputDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        inputDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
         if (IsGrounded())
         {
@@ -150,13 +151,11 @@ public class CharacterMovement : MonoBehaviour
     }
     IEnumerator dashCoroutine()
     {
-        Debug.Log("Dash");
-
         float initialGravity = gravitationalAcceleration;
         isDashing = true;
         isReady = false;
         gravitationalAcceleration = 0f;
-        currentVelocity = Vector3.forward.normalized * dashSpeed;
+        currentVelocity = .normalized * dashSpeed;
         yield return new WaitForSeconds(dashMaintainTime);
         isDashing = false;
         currentVelocity = Vector3.zero;
