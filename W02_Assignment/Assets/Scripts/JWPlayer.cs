@@ -10,8 +10,6 @@ public class JWPlayer : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	private Rigidbody rb;
-
 	private JWMove move;
 	private JWJump jump;
 	private JWDash dash;
@@ -23,7 +21,6 @@ public class JWPlayer : MonoBehaviour
 	#region PrivateMethod
 	private void OnEnable()
 	{
-		TryGetComponent(out rb);
 		TryGetComponent(out move);
 		TryGetComponent(out jump);
 		TryGetComponent(out dash);
@@ -34,7 +31,7 @@ public class JWPlayer : MonoBehaviour
 	}
 	private void OnJump(InputValue value)
 	{
-		jump.Jump();jump.TryToJump(value.Get<float>());
+		jump.TryToJump(value.Get<float>());
 	}
 	private void OnDash(InputValue value)
 	{

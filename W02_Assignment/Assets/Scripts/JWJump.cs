@@ -9,11 +9,10 @@ public class JWJump : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	private Rigidbody rb;
+	private JWRigidBody rb;
+
 	[SerializeField] private float jumpSpeed;
-	[SerializeField] private float groundCheckRayLength = 1.1f;
 	[SerializeField] private float coyoteTime;
-	private bool isOnAir;
 	private bool tryJump;
 	#endregion
 
@@ -31,41 +30,10 @@ public class JWJump : MonoBehaviour
 	}
 	private void Update()
 	{
-		CheckGround();
-		if(tryJump == true)
+		if(tryJump == true && rb.IsGrounded())
 		{
-			Jump();
+			rb.Jump(jumpSpeed);
 		}
-	}
-	public void Jump()
-	{
-		if (isOnAir == true)
-			return;
-		Debug.Log("Jump");
-		isOnAir = true;
-		rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);
-	}
-	private void CheckGround()
-	{
-		if (rb.velocity.y > 0)
-		{
-			return;
-		}
-		RaycastHit[] hit = Physics.RaycastAll(transform.position, Vector3.down, groundCheckRayLength, 1 << LayerMask.NameToLayer("Ground"));
-		Debug.DrawRay(transform.position, Vector3.down * groundCheckRayLength, Color.red);
-		if (hit.Length == 0)
-		{
-			Invoke(nameof(SetJumpDeactive), coyoteTime);
-		}
-		else
-		{
-			Debug.Log(rb.velocity.y);
-			isOnAir = false;
-		}
-	}
-	private void SetJumpDeactive()
-	{
-		isOnAir = true;
 	}
 	#endregion
 }
