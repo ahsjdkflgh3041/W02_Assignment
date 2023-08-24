@@ -373,7 +373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424043184}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 439229952}
   - component: {fileID: 439229951}
   - component: {fileID: 439229950}
+  - component: {fileID: 439229953}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -523,7 +524,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -556,6 +557,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: -45, z: 0}
+--- !u!114 &439229953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439229949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084691e88b96f414da60d2c87a7babb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main: {fileID: 439229951}
+  target: {fileID: 424043189}
+  camSpeed: 5
+  zoomSpeed: 1
+  zoomMin: 20
+  zoomMax: 30
 --- !u!1 &598884599
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +587,7 @@ GameObject:
   - component: {fileID: 598884602}
   - component: {fileID: 598884601}
   - component: {fileID: 598884600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

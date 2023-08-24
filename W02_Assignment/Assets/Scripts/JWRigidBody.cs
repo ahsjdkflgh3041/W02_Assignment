@@ -45,6 +45,7 @@ public class JWRigidBody : MonoBehaviour
 		finalVector.y = _jumpPower;
 	}
 	public bool IsGrounded() => controller.isGrounded;
+	public float GetSpeed() => finalVector.magnitude;
 	#endregion
 
 	#region PrivateMethod

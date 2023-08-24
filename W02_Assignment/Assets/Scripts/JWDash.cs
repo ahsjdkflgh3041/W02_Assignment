@@ -9,7 +9,6 @@ public class JWDash : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	private CharacterController controller;
 	private JWRigidBody rb;
 	[SerializeField] private float magnitude;
 	[SerializeField] private float duration;
@@ -25,7 +24,6 @@ public class JWDash : MonoBehaviour
 	#region PrivateMethod
 	private void OnEnable()
 	{
-		TryGetComponent(out controller);
 		TryGetComponent(out rb);
 	}
 	#endregion
