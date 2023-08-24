@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,11 +36,25 @@ public class CharacterMovement : MonoBehaviour
     #endregion
 
     #region Jump
+    [Header("Jump")]
     private bool isJump;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float gravitationalAcceleration = 10f;
 
     #endregion
+
+    #region Dash
+    [Header("Dash")]
+    private bool onDash;
+    private float dashSpeed = 30f;
+    private float dashMaintainTime = 0.2f; // 대쉬 유지 시간
+    private float dashCooltime = 0.5f;
+    private bool isReady = true;//쿨타임 도는동안 false
+    public bool isDashing = false;
+    [SerializeField]
+    private int countDash = 0; // 대쉬 횟수 제한
+    #endregion
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -47,7 +62,17 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(IsGrounded());
+        if (onDash && countDash < 1 && isReady)  //대쉬 누르면 
+        {
+            DashFunction();  // 대쉬
+            countDash++;  // 하고 카운트 추가
+        }
+
+        if (IsGrounded())
+        {
+            countDash = 0;   // 땅에 떨어지면 대쉬 카운트 초기화
+
+        }
         SetHorizontalVelocity();
         SetVerticalVelocity();
 
@@ -118,6 +143,28 @@ public class CharacterMovement : MonoBehaviour
             currentVelocity.y = Mathf.Max(0f, currentVelocity.y);
         }
     }
+    #region Dash
+    private void DashFunction()
+    {
+        StartCoroutine(dashCoroutine());
+    }
+    IEnumerator dashCoroutine()
+    {
+        Debug.Log("Dash");
+
+        float initialGravity = gravitationalAcceleration;
+        isDashing = true;
+        isReady = false;
+        gravitationalAcceleration = 0f;
+        currentVelocity = Vector3.forward.normalized * dashSpeed;
+        yield return new WaitForSeconds(dashMaintainTime);
+        isDashing = false;
+        currentVelocity = Vector3.zero;
+        gravitationalAcceleration = initialGravity;
+        yield return new WaitForSeconds(dashCooltime);
+        isReady = true;
+    }
+    #endregion
 
     public bool IsGrounded()
     {
@@ -157,5 +204,18 @@ public class CharacterMovement : MonoBehaviour
             isRunning = !isRunning;
         }
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            onDash = true;
+        }
+        else if (context.canceled)
+        {
+            onDash = false;
+        }
+    }
+
     #endregion
 }
