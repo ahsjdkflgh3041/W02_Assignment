@@ -10,21 +10,15 @@ public class JWDash : MonoBehaviour
 
 	#region PrivateVariables
 	private CharacterController controller;
-	private JWRigidBody gravity;
-	[SerializeField] private float dashPower;
+	private JWRigidBody rb;
+	[SerializeField] private float magnitude;
+	[SerializeField] private float duration;
 	#endregion
 
 	#region PublicMethod
 	public void Dash()
 	{
-		gravity.SetBodyTypeKinematic(true);
-		//rb.velocity += transform.forward * dashPower;
-		Invoke(nameof(DashEnd), 0.15f);
-	}
-	public void DashEnd()
-	{
-		gravity.SetBodyTypeKinematic(false);
-		//rb.velocity = Vector3.zero;
+		rb.Dash(magnitude, duration);
 	}
 	#endregion
 
@@ -32,7 +26,7 @@ public class JWDash : MonoBehaviour
 	private void OnEnable()
 	{
 		TryGetComponent(out controller);
-		TryGetComponent(out gravity);
+		TryGetComponent(out rb);
 	}
 	#endregion
 }

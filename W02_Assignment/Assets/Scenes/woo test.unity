@@ -406,7 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8739c15fa5187740a6211a43f977e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashPower: 35
+  magnitude: 0.7
+  duration: 0.1
 --- !u!143 &424043196
 CharacterController:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   fallOffMaxVelocity: -0.06
   fallOffScale: 0.06
   gravityScale: 0.15
+  headingCheckRayDistance: 1.1
 --- !u!1 &439229949
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,16 +21,24 @@ public class JWRigidBody : MonoBehaviour
 	[SerializeField] private float fallOffScale;
 	[SerializeField] private float gravityScale = 0.15f;
 	private const float GRAVITY = -9.81f;
+	[SerializeField] private float headingCheckRayDistance;
+	private bool isDashed;
 
 	private Vector3 finalVector;
 	#endregion
 
 	#region PublicMethod
-	public void SetBodyTypeKinematic(bool _b) => isKinematic = _b;
 	public void MoveToDirection(Vector2 _direction, float _moveSpeed)
 	{
 		direction = new Vector3(_direction.x - _direction.y, 0, _direction.x + _direction.y);
 		moveSpeed = _moveSpeed;
+	}
+	public void Dash(float _magnitude, float _duration)
+	{
+		isDashed = true;
+		isKinematic = true;
+		finalVector = transform.forward * _magnitude;
+		Invoke(nameof(DashEnd), _duration);
 	}
 	public void Jump(float _jumpPower)
 	{
@@ -46,7 +54,11 @@ public class JWRigidBody : MonoBehaviour
 	}
 	private void FixedUpdate()
 	{
-		MovementWithPhysics();
+		if(isDashed == false)
+		{
+			MovementWithPhysics();
+		}
+		MoveBody();
 	}
 	private void MovementWithPhysics()
 	{
@@ -60,7 +72,7 @@ public class JWRigidBody : MonoBehaviour
 			Stop();
 		}
 		CalculateGravity();
-		MoveBody();
+		HeadingCheck();
 	}
 	private void LookRotation(Vector2 _direction)
 	{
@@ -108,6 +120,24 @@ public class JWRigidBody : MonoBehaviour
 	private void MoveBody()
 	{
 		controller.Move(finalVector);
+	}
+	private void HeadingCheck()
+	{
+		if(finalVector.y > 0)
+		{
+			bool heading = Physics.Raycast(transform.position, Vector3.up, headingCheckRayDistance, 1 << LayerMask.NameToLayer("Ground"));
+			Debug.DrawRay(transform.position, Vector3.up * headingCheckRayDistance, Color.red);
+			if (heading == true)
+			{
+				finalVector.y = 0f;
+			}
+		}
+	}
+	private void DashEnd()
+	{
+		isDashed = false;
+		isKinematic = false;
+		finalVector = Vector3.zero;
 	}
 	#endregion
 }
