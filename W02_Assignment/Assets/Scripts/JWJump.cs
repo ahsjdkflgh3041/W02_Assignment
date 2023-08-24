@@ -11,15 +11,25 @@ public class JWJump : MonoBehaviour
 	#region PrivateVariables
 	private JWRigidBody rb;
 
-	[SerializeField] private float jumpSpeed;
 	[SerializeField] private float coyoteTime;
-	private bool tryJump;
+	private float coyoteTimer;
+	[SerializeField] private float jumpSpeed;
+	[SerializeField] private float doubleJumpSpeed;
+	private bool doubleJumped;
 	#endregion
 
 	#region PublicMethod
-	public void TryToJump(float input)
+	public void Jump()
 	{
-		tryJump = input == 1 ? true : false;
+		if (IsGrounded())
+		{
+			rb.Jump(jumpSpeed);
+		}
+		else if (doubleJumped == false)
+		{
+			doubleJumped = true;
+			rb.Jump(doubleJumpSpeed);
+		}
 	}
 	#endregion
 
@@ -30,10 +40,23 @@ public class JWJump : MonoBehaviour
 	}
 	private void Update()
 	{
-		if(tryJump == true && rb.IsGrounded())
+		CoyoteControl();
+	}
+	private void CoyoteControl()
+	{
+		if(rb.IsGrounded() == true)
 		{
-			rb.Jump(jumpSpeed);
+			coyoteTimer = 0f;
+			doubleJumped = false;
 		}
+		else
+		{
+			coyoteTimer += Time.deltaTime;
+		}
+	}
+	private bool IsGrounded()
+	{
+		return coyoteTimer < coyoteTime;
 	}
 	#endregion
 }

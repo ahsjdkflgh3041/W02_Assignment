@@ -22,7 +22,7 @@ public class JWRigidBody : MonoBehaviour
 	[SerializeField] private float gravityScale = 0.15f;
 	private const float GRAVITY = -9.81f;
 
-	[SerializeField] private Vector3 finalVector;
+	private Vector3 finalVector;
 	#endregion
 
 	#region PublicMethod
