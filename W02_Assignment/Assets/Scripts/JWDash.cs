@@ -12,12 +12,19 @@ public class JWDash : MonoBehaviour
 	private JWRigidBody rb;
 	[SerializeField] private float magnitude;
 	[SerializeField] private float duration;
+	[SerializeField] private float cooldown;
+	private bool isReady = true;
 	#endregion
 
 	#region PublicMethod
 	public void Dash()
 	{
-		rb.Dash(magnitude, duration);
+		if(isReady == true)
+		{
+			isReady = false;
+			rb.Dash(magnitude, duration);
+			StartCoroutine(nameof(IE_DashReady), cooldown);
+		}
 	}
 	#endregion
 
@@ -25,6 +32,15 @@ public class JWDash : MonoBehaviour
 	private void OnEnable()
 	{
 		TryGetComponent(out rb);
+	}
+	private IEnumerator IE_DashReady(float _cooldown)
+	{
+		yield return new WaitForSeconds(_cooldown);
+		while(rb.IsGrounded() == false)
+		{
+			yield return null;
+		}
+		isReady = true;
 	}
 	#endregion
 }
