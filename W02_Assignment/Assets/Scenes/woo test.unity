@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8739c15fa5187740a6211a43f977e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 0.06
+  magnitude: 1
   duration: 0.1
   cooldown: 0.5
 --- !u!143 &424043196
@@ -440,8 +440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coyoteTime: 0.1
-  jumpSpeed: 0.03
-  doubleJumpSpeed: 0.024
+  jumpSpeed: 0.52
+  doubleJumpSpeed: 0.46
 --- !u!114 &424043198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,8 +470,8 @@ MonoBehaviour:
   linearDrag: 10
   isKinematic: 0
   fallOffMaxVelocity: -0.06
-  fallOffScale: 0.006
-  gravityScale: 0.01
+  fallOffScale: 0.08
+  gravityScale: 0.16
   headingCheckRayDistance: 1.1
 --- !u!1 &439229949
 GameObject:
@@ -573,7 +573,7 @@ MonoBehaviour:
   main: {fileID: 439229951}
   target: {fileID: 424043189}
   camSpeed: 5
-  zoomSpeed: 1
+  zoomSpeed: 0.4
   zoomMin: 20
   zoomMax: 30
 --- !u!1 &598884599

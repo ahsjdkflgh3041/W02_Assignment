@@ -29,16 +29,16 @@ public class JWCameraController : MonoBehaviour
 	{
 		target.TryGetComponent(out rb);
 	}
-	private void LateUpdate()
+	private void FixedUpdate()
 	{
 		FollowTarget();
 	}
 	private void FollowTarget()
 	{
 		Vector3 destination = target.position + offset;
-		transform.position = Vector3.Lerp(transform.position, destination, camSpeed * Time.deltaTime);
+		transform.position = Vector3.Lerp(transform.position, destination, camSpeed * Time.fixedDeltaTime);
 		float zoom = Mathf.Lerp(zoomMin, zoomMax, rb.GetSpeed() / magnitudeMax);
-		main.fieldOfView = Mathf.Lerp(main.fieldOfView, zoom, zoomSpeed * Time.deltaTime);
+		main.fieldOfView = Mathf.Lerp(main.fieldOfView, zoom, zoomSpeed * Time.fixedDeltaTime);
 	}
 	#endregion
 }
