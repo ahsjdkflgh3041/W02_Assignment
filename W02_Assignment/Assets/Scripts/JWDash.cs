@@ -26,6 +26,10 @@ public class JWDash : MonoBehaviour
 			StartCoroutine(nameof(IE_DashReady), cooldown);
 		}
 	}
+	public void RestoreDash()
+	{
+		isReady = true;
+	}
 	#endregion
 
 	#region PrivateMethod
