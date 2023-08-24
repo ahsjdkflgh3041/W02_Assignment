@@ -53,7 +53,7 @@ public class JWRigidBody : MonoBehaviour
 	{
 		TryGetComponent(out controller);
 	}
-	private void FixedUpdate()
+	private void Update()
 	{
 		if(isDashed == false)
 		{
@@ -81,8 +81,8 @@ public class JWRigidBody : MonoBehaviour
 	}
 	private void MoveForward()
 	{
-		finalVector.x = transform.forward.x * moveSpeed * Time.fixedDeltaTime;
-		finalVector.z = transform.forward.z *moveSpeed * Time.fixedDeltaTime;
+		finalVector.x = transform.forward.x * moveSpeed * Time.deltaTime;
+		finalVector.z = transform.forward.z *moveSpeed * Time.deltaTime;
 	}
 	private void Stop()
 	{
@@ -90,8 +90,8 @@ public class JWRigidBody : MonoBehaviour
         {
 			return;
         }
-        finalVector.x = Mathf.Lerp(finalVector.x, 0, linearDrag * Time.fixedDeltaTime);
-		finalVector.z = Mathf.Lerp(finalVector.z, 0, linearDrag * Time.fixedDeltaTime);
+        finalVector.x = Mathf.Lerp(finalVector.x, 0, linearDrag * Time.deltaTime);
+		finalVector.z = Mathf.Lerp(finalVector.z, 0, linearDrag * Time.deltaTime);
 	}
 	private void CalculateGravity()
 	{
@@ -102,11 +102,11 @@ public class JWRigidBody : MonoBehaviour
 		{
 			if (finalVector.y > fallOffMaxVelocity && finalVector.y < 0)
 			{
-				finalVector += Vector3.up * fallOffScale * GRAVITY * Time.fixedDeltaTime;
+				finalVector += Vector3.up * fallOffScale * GRAVITY * Time.deltaTime;
 			}
 			else
 			{
-				finalVector += Vector3.up * gravityScale * GRAVITY * Time.fixedDeltaTime;
+				finalVector += Vector3.up * gravityScale * GRAVITY * Time.deltaTime;
 			}
 		}
 		ResetYVelocityWhenGrounded();
