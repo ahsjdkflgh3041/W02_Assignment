@@ -62,7 +62,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
-        SetHorizontalVelocity();
+        //SetHorizontalVelocity();
         SetVerticalVelocity();
 
         if (onDash && countDash < 1 && isReady)  //대쉬 누르면 
@@ -79,6 +79,7 @@ public class CharacterMovement : MonoBehaviour
 
         controller.Move(currentVelocity * Time.deltaTime);
     }
+    /*
     private void SetHorizontalVelocity()
     {
         inputDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
@@ -119,6 +120,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
+    */
 
     private void SetVerticalVelocity()
     {
@@ -155,7 +157,6 @@ public class CharacterMovement : MonoBehaviour
         isDashing = true;
         isReady = false;
         gravitationalAcceleration = 0f;
-        currentVelocity = .normalized * dashSpeed;
         yield return new WaitForSeconds(dashMaintainTime);
         isDashing = false;
         currentVelocity = Vector3.zero;
