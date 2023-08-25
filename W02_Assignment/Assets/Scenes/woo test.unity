@@ -1296,6 +1296,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3341594495375626843, guid: 387d89656cceb0445a42b3760333084f, type: 3}
+      propertyPath: rotationPowMult
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341594495375626843, guid: 387d89656cceb0445a42b3760333084f, type: 3}
       propertyPath: rotationLerpSpeed
       value: 12
       objectReference: {fileID: 0}
