@@ -182,7 +182,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.8392157, g: 0.5254902, b: 0.13333334, a: 0.19607843}
-      key1: {r: 0.6784314, g: 0.02745098, b: 0.02745098, a: 0.19607843}
+      key1: {r: 0.83921576, g: 0.5254902, b: 0.13333334, a: 0.19607843}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -290,7 +290,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5c43457c9a7e0284b9010e168aeefd4e, type: 2}
+  - {fileID: 2100000, guid: cc0dffce2c220534ca5b7f9363551070, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -549,6 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0002c1d202bacf0458bb832465dc1f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &3341594495375626842
 MonoBehaviour:
   m_ObjectHideFlags: 0

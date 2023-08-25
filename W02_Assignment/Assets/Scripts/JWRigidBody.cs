@@ -7,6 +7,12 @@ using UnityEngine;
 public class JWRigidBody : MonoBehaviour
 {
 	#region PublicVariables
+	public enum EBodyType
+	{
+		Dynamic = 0,
+		Kinematic = 1,
+		Static = 2
+	}
 	#endregion
 
 	#region PrivateVariables
@@ -16,7 +22,7 @@ public class JWRigidBody : MonoBehaviour
 	private float moveSpeed;
 	[SerializeField] private float linearDrag;
 
-	[SerializeField] private bool isKinematic;
+	[SerializeField] private EBodyType bodyType;
 	[SerializeField] private float fallOffMaxVelocity;
 	[SerializeField] private float fallOffScale;
 	[SerializeField] private float gravityScale = 0.15f;
@@ -36,7 +42,7 @@ public class JWRigidBody : MonoBehaviour
 	public void Dash(float _magnitude, float _duration)
 	{
 		isDashed = true;
-		isKinematic = true;
+		bodyType = EBodyType.Kinematic;
 		finalVector.y = 0f;
 		finalVector = transform.forward * _magnitude;
 		Invoke(nameof(DashEnd), _duration);
@@ -46,13 +52,22 @@ public class JWRigidBody : MonoBehaviour
 		JWCameraController.instance.TargetJumped(true);
 		finalVector.y = _jumpPower;
 	}
-	public void AddForce(Vector3 _direction, float magnitude)
+	public void AddForce(Vector3 _direction, float _magnitude)
 	{
-		finalVector += _direction.normalized * magnitude;
+		finalVector += _direction.normalized * _magnitude;
 	}
 	public void SetVectorZero() => finalVector = Vector3.zero;
 	public bool IsGrounded() => controller.isGrounded;
 	public float GetSpeed() => finalVector.magnitude;
+	public void SetBodyType(EBodyType _type)
+	{
+		CancelInvoke(nameof(DashEnd));
+		if(_type == EBodyType.Static)
+		{
+			finalVector = Vector3.zero;
+		}	
+		bodyType = _type;
+	}
 	#endregion
 
 	#region PrivateMethod
@@ -62,12 +77,13 @@ public class JWRigidBody : MonoBehaviour
 	}
 	private void FixedUpdate()
 	{
+		if (bodyType == EBodyType.Static)
+			return;
 		MoveBody();
 		if (isDashed == false)
 		{
 			MovementWithPhysics();
 		}
-
 	}
 	private void MovementWithPhysics()
 	{
@@ -90,7 +106,7 @@ public class JWRigidBody : MonoBehaviour
 	private void MoveForward()
 	{
 		finalVector.x = transform.forward.x * moveSpeed * Time.fixedDeltaTime;
-		finalVector.z = transform.forward.z *moveSpeed * Time.fixedDeltaTime;
+		finalVector.z = transform.forward.z * moveSpeed * Time.fixedDeltaTime;
 	}
 	private void Stop()
 	{
@@ -103,7 +119,7 @@ public class JWRigidBody : MonoBehaviour
 	}
 	private void CalculateGravity()
 	{
-		if (isKinematic == true)
+		if (bodyType == EBodyType.Kinematic || bodyType == EBodyType.Static)
 			return;
 		if (controller.isGrounded == false)
 		{
@@ -128,6 +144,7 @@ public class JWRigidBody : MonoBehaviour
 	}
 	private void MoveBody()
 	{
+		Physics.SyncTransforms();
 		controller.Move(finalVector);
 	}
 	private void HeadingCheck()
@@ -145,7 +162,7 @@ public class JWRigidBody : MonoBehaviour
 	private void DashEnd()
 	{
 		isDashed = false;
-		isKinematic = false;
+		bodyType = EBodyType.Dynamic;
 		finalVector.x = 0f;
 		finalVector.z = 0f;
 	}
