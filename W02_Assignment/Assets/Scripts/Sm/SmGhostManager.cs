@@ -55,22 +55,24 @@ public class SmGhostManager : MonoBehaviour
 	}
 
     private void OnEnable()
-    {
+	{
+		// 시작 시 모든 고스트를 안보이게 함
+		headingGhost.gameObject.SetActive(false);
+		foreach (SmGhostController var in ghostControllers)
+		{
+			var.gameObject.SetActive(false);
+		}
+
 		if (File.Exists(jsonFileName))
 		{
 			ParsingJsonData();
 			PlayHeadingGhost();
 		}
-
-		// 시작 시 모든 고스트를 안보이게 함
-		foreach (SmGhostController var in ghostControllers)
-		{
-			var.gameObject.SetActive(false);
-		}
     }
 
 	private void PlayHeadingGhost()
 	{
+		headingGhost.gameObject.SetActive(true);
 		StartCoroutine("IE_MoveHeadingPosition");
 	}
 
@@ -103,7 +105,6 @@ public class SmGhostManager : MonoBehaviour
 			else if (jsonString[i] == '}')
 			{
 				checkStack.Pop();
-				Debug.Log(i + "Pop");
 				if (checkStack.Count == 0)
 				{
 					endIndex = i;
