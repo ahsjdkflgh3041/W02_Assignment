@@ -26,6 +26,7 @@ public class JWPlayer : MonoBehaviour
 	public void Respawn()
 	{
 		transform.position = respawnPoint;
+		Physics.SyncTransforms();
 	}
 	#endregion
 
