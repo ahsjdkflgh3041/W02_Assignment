@@ -43,8 +43,14 @@ public class JWRigidBody : MonoBehaviour
 	}
 	public void Jump(float _jumpPower)
 	{
+		JWCameraController.instance.TargetJumped(true);
 		finalVector.y = _jumpPower;
 	}
+	public void AddForce(Vector3 _direction, float magnitude)
+	{
+		finalVector += _direction.normalized * magnitude;
+	}
+	public void SetVectorZero() => finalVector = Vector3.zero;
 	public bool IsGrounded() => controller.isGrounded;
 	public float GetSpeed() => finalVector.magnitude;
 	#endregion
@@ -116,6 +122,7 @@ public class JWRigidBody : MonoBehaviour
 	{
 		if(finalVector.y < 0.1f && controller.isGrounded == true)
 		{
+			JWCameraController.instance.TargetJumped(false);
 			finalVector.y = 0f;
 		}
 	}
