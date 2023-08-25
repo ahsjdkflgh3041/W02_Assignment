@@ -30,6 +30,8 @@ public class JWRigidBody : MonoBehaviour
 	private const float GRAVITY = -9.81f;
 	[SerializeField] private float headingCheckRayDistance;
 	[SerializeField] private float rotationLerpSpeed;
+	[SerializeField] private float movableAngleMagnitude;
+	private float targetAngle;
 	private bool isDashed;
 
 	private Vector3 finalVector;
@@ -92,7 +94,12 @@ public class JWRigidBody : MonoBehaviour
 		if (direction != Vector3.zero)
 		{
 			LookRotation();
-			MoveForward();
+			//TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			if((360 + transform.eulerAngles.y)% 360 > (360 + (targetAngle - movableAngleMagnitude)) % 360
+				&& (360 +transform.eulerAngles.y) % 360 < (360 + (targetAngle + movableAngleMagnitude)) % 360)
+			{
+				MoveForward();
+			}
 		}
 		else
 		{
@@ -103,7 +110,7 @@ public class JWRigidBody : MonoBehaviour
 	}
 	private void LookRotation()
 	{
-		float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+		targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 		float angle = Mathf.LerpAngle(transform.eulerAngles.y, targetAngle, rotationLerpSpeed * Time.fixedDeltaTime);
 		transform.rotation = Quaternion.Euler(0f, angle, 0f);
 	}
@@ -111,6 +118,7 @@ public class JWRigidBody : MonoBehaviour
 	{
 		finalVector.x = transform.forward.x * moveSpeed * Time.fixedDeltaTime;
 		finalVector.z = transform.forward.z * moveSpeed * Time.fixedDeltaTime;
+		Debug.Log(finalVector);
 	}
 	private void Stop()
 	{
