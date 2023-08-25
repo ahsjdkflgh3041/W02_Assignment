@@ -37,6 +37,7 @@ public class JWRigidBody : MonoBehaviour
 	{
 		isDashed = true;
 		isKinematic = true;
+		finalVector.y = 0f;
 		finalVector = transform.forward * _magnitude;
 		Invoke(nameof(DashEnd), _duration);
 	}
@@ -138,7 +139,8 @@ public class JWRigidBody : MonoBehaviour
 	{
 		isDashed = false;
 		isKinematic = false;
-		finalVector = Vector3.zero;
+		finalVector.x = 0f;
+		finalVector.z = 0f;
 	}
 	#endregion
 }
