@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class JWRigidBody : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class JWRigidBody : MonoBehaviour
 	[SerializeField] private float gravityScale = 0.15f;
 	private const float GRAVITY = -9.81f;
 	[SerializeField] private float headingCheckRayDistance;
+	[SerializeField] private float rotationLerpSpeed;
 	private bool isDashed;
 
 	private Vector3 finalVector;
@@ -66,7 +68,7 @@ public class JWRigidBody : MonoBehaviour
 	{
 		if (direction != Vector3.zero)
 		{
-			LookRotation(direction);
+			LookRotation();
 			MoveForward();
 		}
 		else
@@ -76,9 +78,11 @@ public class JWRigidBody : MonoBehaviour
 		CalculateGravity();
 		HeadingCheck();
 	}
-	private void LookRotation(Vector2 _direction)
+	private void LookRotation()
 	{
-		transform.rotation = Quaternion.LookRotation(direction);
+		float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+		float angle = Mathf.LerpAngle(transform.eulerAngles.y, targetAngle, rotationLerpSpeed * Time.fixedDeltaTime);
+		transform.rotation = Quaternion.Euler(0f, angle, 0f);
 	}
 	private void MoveForward()
 	{
