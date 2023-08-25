@@ -38,13 +38,6 @@ public class JWPlayer : MonoBehaviour
 		TryGetComponent(out jump);
 		TryGetComponent(out dash);
 	}
-	private void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.S))
-		{
-			Respawn();
-		}
-	}
 	private void OnMove(InputValue value)
 	{
 		move.Move(value.Get<Vector2>());

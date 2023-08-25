@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 3341594495096810163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.02, z: 0.6}
+  m_LocalScale: {x: 1, y: 0.02, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3341594494898018354}
@@ -290,7 +290,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc0dffce2c220534ca5b7f9363551070, type: 2}
+  - {fileID: 2100000, guid: ff12519a137b6794b9f1e437381bec5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linearDrag: 16
-  isKinematic: 0
+  bodyType: 0
   fallOffMaxVelocity: -0.06
   fallOffScale: 0.08
   gravityScale: 0.16
