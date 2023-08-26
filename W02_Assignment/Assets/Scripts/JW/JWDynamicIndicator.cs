@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
 
-public class JWIndicator : MonoBehaviour
+public class JWDynamicIndicator : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
