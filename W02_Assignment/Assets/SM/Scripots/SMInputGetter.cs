@@ -1,27 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class DeathUIFade : MonoBehaviour
+public class SMInputGetter : MonoBehaviour
 {
+
     #region PublicVariables
-    private Animator anim;
     #endregion
 
     #region PrivateVariables
     #endregion
 
     #region PublicMethod
-    public void PlayFadeAnimation()
-    {
-        anim.SetTrigger("FadeStart");
-    }
     #endregion
 
     #region PrivateMethod
-    private void OnEnable()
+    private void Update()
     {
-        TryGetComponent(out anim);
+        if (Input.anyKeyDown)
+        {
+            SMSceneManager.Instance.ChangeScene("SM_test");
+        }
     }
     #endregion
 }

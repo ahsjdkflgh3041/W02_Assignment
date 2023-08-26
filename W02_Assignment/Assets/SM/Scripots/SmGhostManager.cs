@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SmGhostManager : MonoBehaviour
+public class SMGhostManager : MonoBehaviour
 {
 	#region PublicVariables
 	public bool startRecording = false;
@@ -16,7 +16,7 @@ public class SmGhostManager : MonoBehaviour
 	// 고스트가 여러개일시 고스트가 움직이는 간격을 나타내는 초수
 	[SerializeField, Tooltip("고스트가 여러개일시 고스트가 움직이는 간격을 나타내는 초수")] private float playDuration = 0.5f;
 	// 씬에 존재하는 모든 고스트들을 담는 리스트
-	[SerializeField, Tooltip("씬에 존재하는 모든 고스트들을 담는 리스트")] private List<SmGhostController> ghostControllers = new List<SmGhostController>();
+	[SerializeField, Tooltip("씬에 존재하는 모든 고스트들을 담는 리스트")] private List<SMGhostController> ghostControllers = new List<SMGhostController>();
 	// 움직임과 입력값을 받는 MovingInfomation형 queue
 	private Queue<MovingInformation> movingInfomationQueue = new Queue<MovingInformation>();
 
@@ -24,12 +24,14 @@ public class SmGhostManager : MonoBehaviour
 	private Queue<MovingInformation> headingInfomationQueue = new Queue<MovingInformation>();
 	private string jsonFileName = "./SaveData.json";
 	private string jsonString = "";
-	[SerializeField] SmGhostController headingGhost;
+	[SerializeField] SMGhostController headingGhost;
 	#endregion
 
 	#region PublicMethod
 	// 시작 조건
 	public void SetStart() => startRecording = true;
+
+	public void RecordLapTime() => File.WriteAllText(jsonFileName, jsonString);
 
 	// SmGhostRecorder 스크립트에서부터 FixedUpdate() 한 틱당 호출됨
 	public void GetTransformValue(Vector3 _position, Vector2 _rotation)
@@ -45,7 +47,7 @@ public class SmGhostManager : MonoBehaviour
 	private void SetJson(MovingInformation info)
 	{
 		jsonString += JsonUtility.ToJson(info);
-		File.WriteAllText(jsonFileName, jsonString);
+		//File.WriteAllText(jsonFileName, jsonString);
 	}
 
 	// 매 FixedUpdate() 틱마다 호출된다
@@ -58,7 +60,7 @@ public class SmGhostManager : MonoBehaviour
 	{
 		// 시작 시 모든 고스트를 안보이게 함
 		headingGhost.gameObject.SetActive(false);
-		foreach (SmGhostController var in ghostControllers)
+		foreach (SMGhostController var in ghostControllers)
 		{
 			var.gameObject.SetActive(false);
 		}
@@ -147,7 +149,7 @@ public class SmGhostManager : MonoBehaviour
 		// 녹화 시간 후에 시작됨
 		yield return new WaitForSeconds(recordingTime);
 		MovingInformation info = movingInfomationQueue.Dequeue();
-		foreach (SmGhostController var in ghostControllers)
+		foreach (SMGhostController var in ghostControllers)
 		{
 			// 고스트 하나당 playDuration * index 초 후 재생됨
 			var.gameObject.SetActive(true);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmGhostController : MonoBehaviour
+public class SMGhostController : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
