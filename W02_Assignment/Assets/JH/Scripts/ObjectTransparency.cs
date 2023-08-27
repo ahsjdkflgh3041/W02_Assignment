@@ -16,8 +16,8 @@ public class ObjectTransparency : MonoBehaviour
     #endregion
 
     #region PrivateVariables
-    [SerializeField] private Transform player;
-    [SerializeField] private Transform playerCamera;
+    private Transform player;
+    private Transform playerCamera;
     private float alphaValue = 0.3f;
     private float headPos = 0.5f;
     private float feetPos = -0.5f;
@@ -69,10 +69,15 @@ public class ObjectTransparency : MonoBehaviour
         }
 
     }
-    #endregion
+	#endregion
 
-    #region PrivateMethods
-    private void FixedUpdate()
+	#region PrivateMethods
+	private void OnEnable()
+	{
+		player = GameManager.instance.GetPlayer().transform;
+		playerCamera = GameManager.instance.GetMainCamera().transform;
+	}
+	private void FixedUpdate()
     {
         Vector3 headPosition = player.position + player.up * headPos;
         Vector3 feetPosition = player.position + player.up * feetPos;
@@ -109,17 +114,11 @@ public class ObjectTransparency : MonoBehaviour
     //오브젝트가 RayHit 됐는지 확인 후 List에 입력
     private void CheckObjectsBetween(Vector3 startPosition, Vector3 endPosition)
     {
-        Debug.Log(startPosition + " / " + endPosition);
-
         Vector3 rayDirection = endPosition - startPosition;
         Ray ray = new Ray(startPosition, rayDirection);
-
-        Debug.Log("ray : " + rayDirection);
         int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
         float distance = Vector3.Distance(startPosition, endPosition); // 두 지점 사이의 거리 계산
         RaycastHit[] hits = Physics.RaycastAll(ray, distance, ~playerLayerMask);
-
-        Debug.DrawRay(startPosition, rayDirection.normalized * distance, Color.red); // 방향을 정규화하여 길이를 1로 만듦
         foreach (RaycastHit hit in hits)
         {
             Renderer hitRenderer = hit.collider.GetComponent<Renderer>();
