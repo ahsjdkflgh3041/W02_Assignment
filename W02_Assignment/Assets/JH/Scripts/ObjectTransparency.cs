@@ -70,9 +70,8 @@ public class ObjectTransparency : MonoBehaviour
 
     }
     #endregion
-
-    #region PrivateMethods
-    private void OnEnable()
+	#region PrivateMethods
+	private void Start()
 	{
 		player = GameManager.instance.GetPlayer().transform;
 		playerCamera = GameManager.instance.GetMainCamera().transform;
@@ -85,7 +84,7 @@ public class ObjectTransparency : MonoBehaviour
         CheckObjectsBetween(headPosition, playerCamera.position);
         CheckObjectsBetween(feetPosition, playerCamera.position);
 
-        //List¿¡ ÀÔ·ÂµÈ ¿ÀºêÁ§Æ® Åõ¸íÈ­
+        //Listì— ì…ë ¥ëœ ì˜¤ë¸Œì íŠ¸ íˆ¬ëª…í™”
         foreach (Renderer rend in objectsBetween)
         {
             Color tempColor = rend.material.color;
@@ -95,7 +94,7 @@ public class ObjectTransparency : MonoBehaviour
             rend.material.color = tempColor;
         }
         
-        //Åõ¸íÈ­ µÈ ¿ÀºêÁ§Æ®µé Åõ¸í°ª ÃÊ±âÈ­
+        //íˆ¬ëª…í™” ëœ ì˜¤ë¸Œì íŠ¸ë“¤ íˆ¬ëª…ê°’ ì´ˆê¸°í™”
         if (objectsBetween.Count == 0)
         {
             foreach (Renderer rend in GetComponentsInChildren<Renderer>())
@@ -111,12 +110,12 @@ public class ObjectTransparency : MonoBehaviour
         objectsBetween.Clear();
     }
 
-    //¿ÀºêÁ§Æ®°¡ RayHit µÆ´ÂÁö È®ÀÎ ÈÄ List¿¡ ÀÔ·Â
+    //ì˜¤ë¸Œì íŠ¸ê°€ RayHit ëëŠ”ì§€ í™•ì¸ í›„ Listì— ì…ë ¥
     private void CheckObjectsBetween(Vector3 startPosition, Vector3 endPosition)
     {
         Vector3 rayDirection = endPosition - startPosition;
         Ray ray = new Ray(startPosition, rayDirection);
-        float distance = Vector3.Distance(startPosition, endPosition); // µÎ ÁöÁ¡ »çÀÌÀÇ °Å¸® °è»ê
+        float distance = Vector3.Distance(startPosition, endPosition); // ë‘ ì§€ì  ì‚¬ì´ì˜ ê±°ë¦¬ ê³„ì‚°
 		int layerMask = 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Ground");
         RaycastHit[] hits = Physics.RaycastAll(ray, distance, ~layerMask);
         foreach (RaycastHit hit in hits)

@@ -23,8 +23,7 @@ public class TextChanger : MonoBehaviour
         if ((index < texts.Count - 1))
         {
 			++index;
-			anim.Play("Highlight");
-			tm.text = texts[index];
+			PrintText();
 		}
 	}
 	public void InitializeText()
@@ -32,8 +31,7 @@ public class TextChanger : MonoBehaviour
 		if(index != 0)
 		{
 			index = 0;
-			anim.Play("Highlight");
-			tm.text = texts[index];
+			PrintText();
 		}
 	}
 	#endregion
@@ -43,6 +41,11 @@ public class TextChanger : MonoBehaviour
 	{
 		TryGetComponent(out tm);
 		TryGetComponent(out anim);
+	}
+	private void PrintText()
+	{
+		tm.text = texts[index];
+		anim.Play("Highlight");
 	}
 	#endregion
 }

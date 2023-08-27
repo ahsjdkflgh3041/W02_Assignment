@@ -9,7 +9,7 @@ public class Pillar : MonoBehaviour
 
 	#region PrivateVariables
 	private Transform parent;
-	private float yMod = -0.5f;
+	private float yMod = 0.5f;
 	#endregion
 
 	#region PublicMethod
