@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7059956922884828794}
   - component: {fileID: 7059956922884828795}
   - component: {fileID: 7059956922884828792}
-  - component: {fileID: 7059956922884828793}
   - component: {fileID: 7059956922884828796}
+  - component: {fileID: 2546921898612512981}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -101,18 +101,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7059956922884828793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7059956922884828742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02bd4a64dc009a44fbbbc1980ecca06f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &7059956922884828796
 Animator:
   serializedVersion: 5
@@ -134,6 +122,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2546921898612512981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059956922884828742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13afeaf75943bec45aaf21ed0992703e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostManager: {fileID: 0}
 --- !u!1 &7059956924520628531
 GameObject:
   m_ObjectHideFlags: 0

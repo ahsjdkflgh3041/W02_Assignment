@@ -23,5 +23,5 @@ public class SMGhostController : MonoBehaviour
 	#endregion
 
 	#region PrivateMethod
-    #endregion
+	#endregion
 }

@@ -6,10 +6,11 @@ using UnityEngine;
 public class SMGhostManager : MonoBehaviour
 {
 	#region PublicVariables
-	public bool startRecording = false;
+	public bool startRecording;
 	#endregion
 
 	#region PrivateVariables
+
 	[Header("Chasing Ghost Options")]
 	// 처음으로 움직이기 시작한 후, 고스트가 움직이기 시작하는 초수
 	[SerializeField, Tooltip("처음으로 움직이기 시작한 후, 고스트가 움직이기 시작하는 초수")] private float recordingTime = 3f;
@@ -41,6 +42,25 @@ public class SMGhostManager : MonoBehaviour
 		SetJson(info);
 		PlayGhostMoving();
 	}
+	public void ResetGhosts()
+	{
+		StopAllCoroutines();
+		startRecording = false;
+		movingInfomationQueue.Clear();
+		jsonString = "";
+		// 시작 시 모든 고스트를 안보이게 함
+		headingGhost.gameObject.SetActive(false);
+		foreach (SMGhostController var in ghostControllers)
+		{
+			var.gameObject.SetActive(false);
+		}
+
+		if (File.Exists(jsonFileName))
+		{
+			ParsingJsonData();
+			PlayHeadingGhost();
+		}
+	}
 	#endregion
 
 	#region PrivateMethod
@@ -58,18 +78,7 @@ public class SMGhostManager : MonoBehaviour
 
     private void OnEnable()
 	{
-		// 시작 시 모든 고스트를 안보이게 함
-		headingGhost.gameObject.SetActive(false);
-		foreach (SMGhostController var in ghostControllers)
-		{
-			var.gameObject.SetActive(false);
-		}
-
-		if (File.Exists(jsonFileName))
-		{
-			ParsingJsonData();
-			PlayHeadingGhost();
-		}
+		ResetGhosts();
     }
 
 	private void PlayHeadingGhost()
@@ -80,6 +89,7 @@ public class SMGhostManager : MonoBehaviour
 
 	private void ParsingJsonData()
 	{
+		headingInfomationQueue.Clear();
 		string jsonDataString = File.ReadAllText(jsonFileName);
 
 		List<string> jsonObjects = ExtractJSONObjects(jsonDataString);
@@ -158,17 +168,16 @@ public class SMGhostManager : MonoBehaviour
 		}
 	}
 
-	// 만드는 중
 	IEnumerator IE_MoveHeadingPosition()
 	{
 		 while(headingInfomationQueue.Count != 0)
 		{
 			MovingInformation info = headingInfomationQueue.Dequeue();
 			headingGhost.MovePosition(info);
-			yield return new WaitForSeconds(Time.fixedDeltaTime);
+			yield return new WaitForFixedUpdate();
 		}
 	}
-        #endregion
+	#endregion
 }
 
 
