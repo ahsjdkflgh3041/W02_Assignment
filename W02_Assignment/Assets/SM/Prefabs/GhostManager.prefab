@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8624861789258922021}
-  - component: {fileID: 8624861789258922018}
+  - component: {fileID: 5798411554489856188}
   m_Layer: 0
   m_Name: GhostManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8624861789258922018
+--- !u!114 &5798411554489856188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,10 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startRecording: 0
-  recordingTime: 1
-  playDuration: 1
-  ghostControllers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  recordingTime: 3
+  playDuration: 0.5
+  ghostControllers: []
   headingGhost: {fileID: 0}

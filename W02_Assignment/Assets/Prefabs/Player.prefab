@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fdbf79381f94f418f33a248bfff0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coyoteTime: 0.1
+  coyoteTime: 0.2
   jumpSpeed: 0.52
   doubleJumpSpeed: 0.46
 --- !u!114 &3341594495375626845
