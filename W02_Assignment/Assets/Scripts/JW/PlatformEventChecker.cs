@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlatformEventChecker : MonoBehaviour
+public class PlatformEventChecker : PlatformLandingEvent
 {
 	#region PublicVariables
 	public UnityEvent onLanding;
@@ -16,18 +16,9 @@ public class PlatformEventChecker : MonoBehaviour
 	#endregion
 
 	#region PrivateMethod
-	private void OnTriggerEnter(Collider _other)
+	protected override void OnPlayerLanding(JWPlayer _player)
 	{
-		CallEvent(_other);
-	}
-	private void CallEvent(Collider _other)
-	{
-		JWPlayer player;
-		_other.gameObject.TryGetComponent(out player);
-		if (player != null)
-		{
-			onLanding.Invoke();
-		}
+		onLanding.Invoke();
 	}
 	#endregion
 }
