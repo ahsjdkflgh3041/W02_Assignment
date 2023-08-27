@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
@@ -9,59 +11,57 @@ public class MovingPlatform : MonoBehaviour
     #endregion
 
     #region PrivateVariables
-    [SerializeField] GetNextWaypoint waypointPath;
+    [SerializeField] private Transform platform;
+    [SerializeField] private Transform startPoint;
+    [SerializeField] private Transform endPoint;
     [SerializeField] private float speed;
+    private int direction = 1;
+    #endregion
 
-    private int targetWaypointIndex;
-    private Transform previousWaypoint;
-    private Transform targetWaypoint;
-    private float timeToWaypoint;
-    private float elapsedTime;
-#endregion
+    #region PublicMethods
 
-#region PublicMethods
+    #endregion
 
-#endregion
-
-#region PrivateMethods
+    #region PrivateMethods
     void Start()
     {
-        TargetNextWaypoint();
+
     }
     void FixedUpdate()
     {
-        elapsedTime += Time.fixedDeltaTime;
-        float elapsedPercentage = elapsedTime / timeToWaypoint;
-        elapsedPercentage = Mathf.SmoothStep(0, 1, elapsedPercentage);
-        transform.position = Vector3.Lerp(previousWaypoint.position, targetWaypoint.position, elapsedPercentage);
+        Vector3 target = CurrentMovementTarget();
+        platform.position = Vector3.Lerp(platform.position, target, speed * Time.fixedDeltaTime);
 
-        if (elapsedPercentage >= 1)
+        float distance = (target - (Vector3)platform.position).magnitude;
+
+        if (distance <= 0.1f)
         {
-            TargetNextWaypoint();
+            direction *= -1;
         }
     }
 
-    private void TargetNextWaypoint()
+    private Vector3 CurrentMovementTarget()
     {
-        previousWaypoint = waypointPath.GetWayPoint(targetWaypointIndex);
-        targetWaypointIndex = waypointPath.GetNextWaypointIndex(targetWaypointIndex);
-        targetWaypoint = waypointPath.GetWayPoint(targetWaypointIndex);
-
-        elapsedTime = 0;
-
-        float distanceToWaypoint = Vector3.Distance(previousWaypoint.position, targetWaypoint.position);
-        timeToWaypoint = distanceToWaypoint / speed;
+        if (direction == 1)
+        {
+            return startPoint.position;
+        }
+        else
+        {
+            return endPoint.position;
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        if (platform != null && startPoint != null && endPoint != null)
+        {
+            Gizmos.DrawLine(platform.transform.position, startPoint.position);
+            Gizmos.DrawLine(platform.transform.position, endPoint.position);
+        }
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        other.transform.SetParent(transform);
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        other.transform.SetParent(null);
-    }
     #endregion
 }
+
