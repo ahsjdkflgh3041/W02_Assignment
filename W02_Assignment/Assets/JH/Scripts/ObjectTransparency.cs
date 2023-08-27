@@ -69,10 +69,10 @@ public class ObjectTransparency : MonoBehaviour
         }
 
     }
-	#endregion
+    #endregion
 
-	#region PrivateMethods
-	private void OnEnable()
+    #region PrivateMethods
+    private void OnEnable()
 	{
 		player = GameManager.instance.GetPlayer().transform;
 		playerCamera = GameManager.instance.GetMainCamera().transform;
