@@ -9,7 +9,7 @@ public class Pillar : MonoBehaviour
 
 	#region PrivateVariables
 	private Transform parent;
-	[SerializeField] private float yMod;
+	private float yMod = -0.5f;
 	#endregion
 
 	#region PublicMethod
