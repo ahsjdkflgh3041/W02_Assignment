@@ -72,7 +72,7 @@ public class ObjectTransparency : MonoBehaviour
 	#endregion
 
 	#region PrivateMethods
-	private void OnEnable()
+	private void Start()
 	{
 		player = GameManager.instance.GetPlayer().transform;
 		playerCamera = GameManager.instance.GetMainCamera().transform;
