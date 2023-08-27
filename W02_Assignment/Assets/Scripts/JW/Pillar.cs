@@ -9,6 +9,7 @@ public class Pillar : MonoBehaviour
 
 	#region PrivateVariables
 	private Transform parent;
+	[SerializeField] private float yMod;
 	#endregion
 
 	#region PublicMethod
@@ -19,7 +20,7 @@ public class Pillar : MonoBehaviour
 	{
 		transform.parent.TryGetComponent(out parent);
 		float yScale = Mathf.Clamp(parent.position.y + 1, 1, float.MaxValue);
-		float yPos = Mathf.Clamp(-(yScale / 2), float.MinValue, 0.5f);
+		float yPos = Mathf.Clamp(-(yScale / 2) + yMod, float.MinValue, 0.5f);
 		transform.localScale = new Vector3(transform.localScale.x, yScale, transform.localScale.z);
 		transform.localPosition = new Vector3(transform.localPosition.x, yPos, transform.localPosition.z);
 	}
