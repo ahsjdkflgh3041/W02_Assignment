@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SmGhostRecorder : MonoBehaviour
+public class SMGhostRecorder : MonoBehaviour
 {
     #region PublicVariables
     #endregion
@@ -27,7 +27,7 @@ public class SmGhostRecorder : MonoBehaviour
         }
     }
 
-    [SerializeField] private SmGhostManager ghostManager;
+    [SerializeField] private SMGhostManager ghostManager;
     #endregion
 
     #region PublicMethod
