@@ -31,9 +31,6 @@ public class SMKey : MonoBehaviour
     #endregion
 
     #region PrivateMethod
-    private void OnEnable()
-    {
-    }
 
     private void OnTriggerEnter(Collider other)
     {
