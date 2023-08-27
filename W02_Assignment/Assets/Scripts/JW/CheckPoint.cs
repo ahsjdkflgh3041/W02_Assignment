@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPoint : MonoBehaviour
+public class CheckPoint : PlatformLandingEvent
 {
 	#region PublicVariables
 	#endregion
@@ -36,18 +36,9 @@ public class CheckPoint : MonoBehaviour
 	{
 		transform.parent.TryGetComponent(out anim);
 	}
-	private void OnTriggerEnter(Collider _other)
+	protected override void OnPlayerLanding(JWPlayer _player)
 	{
-		SetCheckPoint(_other);
-	}
-	private void SetCheckPoint(Collider _other)
-	{
-		JWPlayer player;
-		_other.gameObject.TryGetComponent(out player);
-		if (player != null)
-		{
-			CheckPointOn(player);
-		}
+		CheckPointOn(_player);
 	}
 	#endregion
 }
