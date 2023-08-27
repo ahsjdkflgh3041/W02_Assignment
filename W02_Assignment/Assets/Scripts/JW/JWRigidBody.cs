@@ -14,6 +14,7 @@ public class JWRigidBody : MonoBehaviour
 		Kinematic = 1,
 		Static = 2
 	}
+	public float linearDrag = 12f;
 	#endregion
 
 	#region PrivateVariables
@@ -21,7 +22,7 @@ public class JWRigidBody : MonoBehaviour
 
 	private Vector3 direction;
 	private float moveSpeed;
-	[SerializeField] private float linearDrag;
+	//[SerializeField] private float linearDrag;
 
 	[SerializeField] private EBodyType bodyType;
 	[SerializeField] private float fallOffMaxVelocity;
