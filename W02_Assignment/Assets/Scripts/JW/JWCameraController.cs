@@ -13,17 +13,17 @@ public class JWCameraController : MonoBehaviour
 	#region PrivateVariables
 	private JWRigidBody rb;
 
-	private Vector3 offset = new Vector3(25, 20, -25);
-	private Vector3 rotation = new Vector3(30, -45, 0);
+	private Vector3 offset = new Vector3(7, 10, -7);
+/*	private Vector3 rotation = new Vector3(30, -45, 0);
 	[SerializeField] private float jumpXRotation = -20;
-	[SerializeField] private float jumpYOffset = -13;
+	[SerializeField] private float jumpYOffset = -13;*/
 	[SerializeField] private float camSpeed;
-	[SerializeField] private float zoomSpeed;
+/*	[SerializeField] private float zoomSpeed;
 	[SerializeField] private float zoomMin;
-	[SerializeField] private float zoomMax;
+	[SerializeField] private float zoomMax;*/
 	private bool targetJumped;
 
-	private float magnitudeMax = 0.3f;
+/*	private float magnitudeMax = 0.3f;*/
 	#endregion
 
 	#region PublicMethod
@@ -46,14 +46,14 @@ public class JWCameraController : MonoBehaviour
 	}
 	private void FollowTarget()
 	{
-		float offsetYAdditive = targetJumped ? jumpYOffset : 0;
-		float rotationXAdditive = targetJumped ? jumpXRotation : 0;
-		Vector3 targetPosition = target.position + new Vector3(offset.x, offset.y + offsetYAdditive, offset.z);
-		Vector3 targetRotation = new Vector3(rotation.x + rotationXAdditive, rotation.y, rotation.z);
+/*		float offsetYAdditive = targetJumped ? jumpYOffset : 0;
+		float rotationXAdditive = targetJumped ? jumpXRotation : 0;*/
+		Vector3 targetPosition = target.position + new Vector3(offset.x, offset.y /*+ offsetYAdditive*/, offset.z);
+/*		Vector3 targetRotation = new Vector3(rotation.x + rotationXAdditive, rotation.y, rotation.z);*/
 		transform.position = Vector3.Lerp(transform.position, targetPosition, camSpeed * Time.fixedDeltaTime);
-		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), camSpeed * Time.fixedDeltaTime);
+/*		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), camSpeed * Time.fixedDeltaTime);
 		float zoom = Mathf.Lerp(zoomMin, zoomMax, rb.GetSpeed() / magnitudeMax);
-		main.fieldOfView = Mathf.Lerp(main.fieldOfView, zoom, zoomSpeed * Time.fixedDeltaTime);
+		main.fieldOfView = Mathf.Lerp(main.fieldOfView, zoom, zoomSpeed * Time.fixedDeltaTime);*/
 	}
 	#endregion
 }
