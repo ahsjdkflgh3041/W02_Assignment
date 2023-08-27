@@ -33,7 +33,6 @@ public class SMKey : MonoBehaviour
     #region PrivateMethod
     private void OnEnable()
     {
-		TryGetComponent(out door);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,6 +43,7 @@ public class SMKey : MonoBehaviour
 		{
 			isCollected = true;
 			door.CheckEveryKey();
+			gameObject.SetActive(false);
 		}
     }
     #endregion

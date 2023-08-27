@@ -10,6 +10,8 @@ public class SMLockedDoor : MonoBehaviour
     #region PrivateVariables
     [SerializeField] private List<SMKey> keys = new List<SMKey>();
 
+    [SerializeField] private float yPositionMax = 13f;
+
     private Animator anim;
     #endregion
 
@@ -36,12 +38,18 @@ public class SMLockedDoor : MonoBehaviour
 
     private void Open()
     {
-        
+        StartCoroutine("IE_OpenCoroutine");
     }
 
-    IEnumerator IE_OpenCorutine()
+    IEnumerator IE_OpenCoroutine()
     {
-        yield return new WaitForFixedUpdate();
+        float yPosition = transform.position.y;
+        while (yPosition < yPositionMax)
+        {
+            yPosition = Mathf.Lerp(yPosition, yPositionMax, Time.fixedDeltaTime);
+            transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+            yield return new WaitForFixedUpdate();
+        }
     }
     #endregion
 }
