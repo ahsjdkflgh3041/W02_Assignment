@@ -44,7 +44,8 @@ public class JWDynamicIndicator : MonoBehaviour
 	}
 	private Vector3 GetGroundPosition()
 	{
-		RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.down, float.MaxValue, 1 << LayerMask.NameToLayer("Ground"))
+		RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.down, float.MaxValue
+			, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Platform"))
 			.OrderBy(hit => hit.distance)
 			.ToArray();
 		if(hits.Length > 0)
