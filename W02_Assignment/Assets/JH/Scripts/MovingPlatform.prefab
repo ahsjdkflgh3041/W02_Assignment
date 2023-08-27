@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1724818948944353015}
   - component: {fileID: 1724818948944353012}
   - component: {fileID: 1724818948944353013}
-  - component: {fileID: 1724818948944353010}
   - component: {fileID: 1724818948944353016}
-  m_Layer: 0
+  - component: {fileID: 2507853122817571720}
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,23 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1724818948944353010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724818948944353011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24ceece44737b934eb908c769d1767b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alphaValue: 0.3
-  headPos: 0.5
-  feetPos: -0.5
-  player: {fileID: 0}
-  playerCamera: {fileID: 0}
 --- !u!114 &1724818948944353016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +114,19 @@ MonoBehaviour:
   platform: {fileID: 1724818948944353014}
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
-  speed: 0.2
+  speed: 1
+--- !u!114 &2507853122817571720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724818948944353011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ceece44737b934eb908c769d1767b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724818948997111180
 GameObject:
   m_ObjectHideFlags: 0
