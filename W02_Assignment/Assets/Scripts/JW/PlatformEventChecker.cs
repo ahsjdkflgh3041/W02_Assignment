@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlatformEventChecker : PlatformLandingEvent
+public class PlatformEventChecker : TriggerPlayerInEvent
 {
 	#region PublicVariables
 	public UnityEvent onLanding;
@@ -16,7 +16,7 @@ public class PlatformEventChecker : PlatformLandingEvent
 	#endregion
 
 	#region PrivateMethod
-	protected override void OnPlayerLanding(JWPlayer _player)
+	protected override void OnPlayerIn(JWPlayer _player)
 	{
 		onLanding.Invoke();
 	}
