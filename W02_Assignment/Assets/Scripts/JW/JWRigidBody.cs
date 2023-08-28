@@ -70,6 +70,7 @@ public class JWRigidBody : MonoBehaviour
 		if(_type == EBodyType.Static)
 		{
 			finalVector = Vector3.zero;
+			direction = Vector3.zero;
 		}	
 		bodyType = _type;
 	}
@@ -152,7 +153,6 @@ public class JWRigidBody : MonoBehaviour
 	}
 	private void MoveBody()
 	{
-		//Physics.SyncTransforms();
 		controller.Move(finalVector);
 	}
 	private void HeadingCheck()
