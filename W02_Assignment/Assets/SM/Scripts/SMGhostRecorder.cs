@@ -33,9 +33,9 @@ public class SMGhostRecorder : MonoBehaviour
 	#endregion
 
 	#region PublicMethod
-	public void SetStartWhenInput()
+	public void SetStartWhenInput(bool _value)
 	{
-		startWhenInput = true;
+		startWhenInput = _value;
 	}
 
     public void SetInput(Vector2 _input)
