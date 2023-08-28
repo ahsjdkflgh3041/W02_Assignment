@@ -22,7 +22,7 @@ public class JWPlayer : MonoBehaviour
 	public void Die()
 	{
 		GameManager.instance.OnPlayerDead();
-		Respawn();
+		//Respawn();
 	}
 	public void Respawn()
 	{
