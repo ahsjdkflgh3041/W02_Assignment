@@ -21,25 +21,30 @@ public class SMGhostManager : MonoBehaviour
 	// 움직임과 입력값을 받는 MovingInfomation형 queue
 	private Queue<MovingInformation> movingInfomationQueue = new Queue<MovingInformation>();
 
+	/*
+	 * 랩타임 고스트
 	[Header("Heading Ghost Options")]
 	private Queue<MovingInformation> headingInfomationQueue = new Queue<MovingInformation>();
 	private string jsonFileName = "./SaveData.json";
 	private string jsonString = "";
 	[SerializeField] SMGhostController headingGhost;
+	*/
 	#endregion
 
 	#region PublicMethod
 	// 시작 조건
 	public void SetStart() => startRecording = true;
 
-	public void RecordLapTime() => File.WriteAllText(jsonFileName, jsonString);
+	// 랩타임 고스트
+	//public void RecordLapTime() => File.WriteAllText(jsonFileName, jsonString);
 
 	// SmGhostRecorder 스크립트에서부터 FixedUpdate() 한 틱당 호출됨
 	public void GetTransformValue(Vector3 _position, Vector2 _rotation)
 	{
 		MovingInformation info = new MovingInformation(_position, _rotation);
 		movingInfomationQueue.Enqueue(info);
-		SetJson(info);
+		// 랩타임 고스트
+		// SetJson(info);
 		PlayGhostMoving();
 	}
 	public void ResetGhosts()
@@ -47,28 +52,36 @@ public class SMGhostManager : MonoBehaviour
 		StopAllCoroutines();
 		startRecording = false;
 		movingInfomationQueue.Clear();
+		/*
+		 * 랩타임 고스트
 		jsonString = "";
 		// 시작 시 모든 고스트를 안보이게 함
-		headingGhost.gameObject.SetActive(false);
+		headingGhost.gameObject.SetActive(false)
+		*/;
 		foreach (SMGhostController var in ghostControllers)
 		{
 			var.gameObject.SetActive(false);
 		}
-
+		/*
+		 * 랩타임 고스트
 		if (File.Exists(jsonFileName))
 		{
 			ParsingJsonData();
 			PlayHeadingGhost();
 		}
+		*/
 	}
 	#endregion
 
 	#region PrivateMethod
+	/* 
+	 * 랩타임 고스트
 	private void SetJson(MovingInformation info)
 	{
 		jsonString += JsonUtility.ToJson(info);
 		//File.WriteAllText(jsonFileName, jsonString);
 	}
+	*/
 
 	// 매 FixedUpdate() 틱마다 호출된다
 	private void PlayGhostMoving()
@@ -81,6 +94,7 @@ public class SMGhostManager : MonoBehaviour
 		ResetGhosts();
     }
 
+	/* 랩타임 고스트
 	private void PlayHeadingGhost()
 	{
 		headingGhost.gameObject.SetActive(true);
@@ -153,6 +167,7 @@ public class SMGhostManager : MonoBehaviour
 
 		return jsonObjects;
 	}
+	*/
 
 	IEnumerator IE_MoveFollwingPosition()
 	{
@@ -168,6 +183,7 @@ public class SMGhostManager : MonoBehaviour
 		}
 	}
 
+	/* 랩타임 고스트
 	IEnumerator IE_MoveHeadingPosition()
 	{
 		 while(headingInfomationQueue.Count != 0)
@@ -177,6 +193,7 @@ public class SMGhostManager : MonoBehaviour
 			yield return new WaitForFixedUpdate();
 		}
 	}
+	*/
 	#endregion
 }
 
