@@ -538,6 +538,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc659a5c2d538045bb712ba1c50f966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetScene: woo test
+  isInputKey: 1
+  text: {fileID: 0}
+  starData: {fileID: 0}
 --- !u!1 &1300484356
 GameObject:
   m_ObjectHideFlags: 0

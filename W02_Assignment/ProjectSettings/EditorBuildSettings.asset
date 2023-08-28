@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/SM/Scenes/SM_MainMenu.unity
     guid: f19de11a14e76d6408bcf431eb39fc14
   - enabled: 1
+    path: Assets/Scenes/woo test.unity
+    guid: 8439f1a250353ce4a8e9b12200aff1d5
+  - enabled: 1
     path: Assets/SM/Scenes/SM_test.unity
     guid: f763842b4fa4be9448c753b2464c41b6
+  - enabled: 1
+    path: Assets/JH/Scripts/Scenes/JHTest.unity
+    guid: 72f7f7c84a4e63b45bbd413dc2d9c5a8
+  - enabled: 1
+    path: Assets/SM/Scenes/SM_Ending.unity
+    guid: 0cadd2329bd7ac046a04d3942a6d100f
   m_configObjects: {}
