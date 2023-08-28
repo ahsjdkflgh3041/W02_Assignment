@@ -15,6 +15,8 @@ public class JWPlayer : MonoBehaviour
 	private JWJump jump;
 	private JWDash dash;
 
+	private bool canAct = true;
+
 	[SerializeField] private CheckPoint checkPoint;
 	#endregion
 
@@ -34,6 +36,7 @@ public class JWPlayer : MonoBehaviour
 			transform.position = Vector3.zero + Vector3.up * 2f;
 		}
 		Physics.SyncTransforms();
+		dash.RestoreDash();
 	}
 	public CheckPoint GetRespawnPoint() => checkPoint;
 	public void SetRespawnPoint(CheckPoint _point)
