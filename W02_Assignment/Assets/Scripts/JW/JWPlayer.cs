@@ -14,6 +14,7 @@ public class JWPlayer : MonoBehaviour
 	private JWMove move;
 	private JWJump jump;
 	private JWDash dash;
+	private SMGhostRecorder recorder;
 
 	private bool canAct = true;
 
@@ -24,21 +25,24 @@ public class JWPlayer : MonoBehaviour
 	public void CanAct()
 	{
 		canAct = true;
+		rb.SetBodyType(JWRigidBody.EBodyType.Dynamic);
 	}
-	public void CantAct(float _duration)
+	public void CanNotAct(float _duration)
 	{
 		canAct = false;
+		rb.SetBodyType(JWRigidBody.EBodyType.Static);
 		Invoke(nameof(CanAct), _duration);
 	}
-	public void CantAct()
+	public void CanNotAct()
 	{
 		canAct = false;
+		rb.SetBodyType(JWRigidBody.EBodyType.Static);
 	}
 	public void Die()
 	{
 		GameManager.instance.OnPlayerDead();
 		Respawn();
-		CantAct(1.3f);
+		CanNotAct();
 	}
 	public void Respawn()
 	{
@@ -71,12 +75,17 @@ public class JWPlayer : MonoBehaviour
 		TryGetComponent(out move);
 		TryGetComponent(out jump);
 		TryGetComponent(out dash);
+		TryGetComponent(out recorder);
 	}
 	private void OnMove(InputValue value)
 	{
 		if (canAct == false)
 			return;
 		move.Move(value.Get<Vector2>());
+		if (recorder != null)
+		{
+			recorder.SetInput(value.Get<Vector2>());
+		}
 	}
 	private void OnJump(InputValue value)
 	{

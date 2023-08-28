@@ -31,14 +31,13 @@ public class SMGhostRecorder : MonoBehaviour
     #endregion
 
     #region PublicMethod
+    public void SetInput(Vector2 _input)
+    {
+        inputValue = _input;
+    }
     #endregion
 
     #region PrivateMethod
-
-    private void OnMove(InputValue _value)
-    {
-        inputValue = _value.Get<Vector2>();
-    }
 
     private void FixedUpdate()
     {

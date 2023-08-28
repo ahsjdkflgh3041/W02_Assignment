@@ -9,12 +9,23 @@ public class SMDeathUIFade : MonoBehaviour
     #endregion
 
     #region PrivateVariables
+    [SerializeField] private JWPlayer player;
     #endregion
 
     #region PublicMethod
     public void PlayFadeAnimation()
     {
         anim.SetTrigger("FadeStart");
+    }
+
+    public void RespawnPlayer()
+    {
+        player.Respawn();
+    }
+
+    public void MovePlayer()
+    {
+        player.CanAct();
     }
     #endregion
 
