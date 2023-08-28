@@ -10,11 +10,12 @@ public class StarTrigger : MonoBehaviour
 
     #region PrivateVariables
     [SerializeField] private Transform hiddenStar;
+    [SerializeField] private float duration = 30f;
     private Vector3 originPosition;
     private Vector3 initialPosition;
     private Vector3 targetPosition;
     private float speed = 0.1f;
-    private float duration = 20f;
+   
     private float startTime;
     private bool isStart = false;
 
