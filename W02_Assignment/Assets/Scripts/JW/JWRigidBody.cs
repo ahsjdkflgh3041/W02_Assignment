@@ -52,6 +52,13 @@ public class JWRigidBody : MonoBehaviour
 		finalVector = transform.forward * _magnitude;
 		Invoke(nameof(DashEnd), _duration);
 	}
+	public void DashEnd()
+	{
+		isDashed = false;
+		bodyType = EBodyType.Dynamic;
+		finalVector.x = 0f;
+		finalVector.z = 0f;
+	}
 	public void Jump(float _jumpPower)
 	{
 		JWCameraController.instance.TargetJumped(true);
@@ -166,13 +173,6 @@ public class JWRigidBody : MonoBehaviour
 				finalVector.y = 0f;
 			}
 		}
-	}
-	private void DashEnd()
-	{
-		isDashed = false;
-		bodyType = EBodyType.Dynamic;
-		finalVector.x = 0f;
-		finalVector.z = 0f;
 	}
 	#endregion
 }
