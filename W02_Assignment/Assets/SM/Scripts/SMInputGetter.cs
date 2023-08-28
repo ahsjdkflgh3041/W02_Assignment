@@ -10,6 +10,7 @@ public class SMInputGetter : MonoBehaviour
     #endregion
 
     #region PrivateVariables
+    [SerializeField] private string targetScene = "SM_test";
     #endregion
 
     #region PublicMethod
@@ -20,7 +21,7 @@ public class SMInputGetter : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SMSceneManager.Instance.ChangeScene("SM_test");
+            SMSceneManager.Instance.ChangeScene(targetScene);
         }
     }
     #endregion

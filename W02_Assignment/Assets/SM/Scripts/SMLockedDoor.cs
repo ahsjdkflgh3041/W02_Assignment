@@ -9,8 +9,8 @@ public class SMLockedDoor : MonoBehaviour
 
     #region PrivateVariables
     [SerializeField] private List<SMKey> keys = new List<SMKey>();
-
     [SerializeField] private float yPositionMax = 13f;
+    [SerializeField] private float initialYPosition;
     #endregion
 
     #region PublicMethod
@@ -26,6 +26,12 @@ public class SMLockedDoor : MonoBehaviour
         Open();
     }
 
+    public void ResetDoor()
+    {
+        StopAllCoroutines();
+        gameObject.transform.position = new Vector3(transform.position.x, initialYPosition, transform.position.z);
+    }
+   
     public void ResetAllKey()
     {
         foreach (SMKey key in keys)
@@ -38,6 +44,11 @@ public class SMLockedDoor : MonoBehaviour
 
     #region PrivateMethod
 
+    private void OnEnable()
+    {
+        initialYPosition = transform.position.y;
+    }
+
     private void Open()
     {
         StartCoroutine("IE_OpenCoroutine");
@@ -45,7 +56,7 @@ public class SMLockedDoor : MonoBehaviour
 
     IEnumerator IE_OpenCoroutine()
     {
-        float yPosition = transform.position.y;
+        float yPosition = initialYPosition;
         while (yPosition < yPositionMax)
         {
             yPosition = Mathf.Lerp(yPosition, yPositionMax, Time.fixedDeltaTime);
