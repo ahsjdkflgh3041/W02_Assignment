@@ -6486,7 +6486,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -6503,11 +6503,11 @@ PrefabInstance:
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1976462766}
+      objectReference: {fileID: 599123993}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1647457385}
+      objectReference: {fileID: 599123993}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -6526,11 +6526,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PrintNext
+      value: ResetGhosts
       objectReference: {fileID: 0}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PrintNext
+      value: ResetGhosts
       objectReference: {fileID: 0}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -6538,11 +6538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TextChanger, Assembly-CSharp
+      value: SMGhostManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: TextChanger, Assembly-CSharp
+      value: SMGhostManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2022748419588355939, guid: 5b4e2cc70ec7098419da1ad2e132ba3a, type: 3}
       propertyPath: onLanding.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
