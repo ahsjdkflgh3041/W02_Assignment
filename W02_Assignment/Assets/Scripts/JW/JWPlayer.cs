@@ -21,10 +21,24 @@ public class JWPlayer : MonoBehaviour
 	#endregion
 
 	#region PublicMethod
+	public void CanAct()
+	{
+		canAct = true;
+	}
+	public void CantAct(float _duration)
+	{
+		canAct = false;
+		Invoke(nameof(CanAct), _duration);
+	}
+	public void CantAct()
+	{
+		canAct = false;
+	}
 	public void Die()
 	{
 		GameManager.instance.OnPlayerDead();
 		Respawn();
+		CantAct(1.3f);
 	}
 	public void Respawn()
 	{
@@ -60,14 +74,20 @@ public class JWPlayer : MonoBehaviour
 	}
 	private void OnMove(InputValue value)
 	{
+		if (canAct == false)
+			return;
 		move.Move(value.Get<Vector2>());
 	}
 	private void OnJump(InputValue value)
 	{
+		if (canAct == false)
+			return;
 		jump.Jump();
 	}
 	private void OnDash(InputValue value)
 	{
+		if (canAct == false)
+			return;
 		dash.Dash();
 	}
 	#endregion
