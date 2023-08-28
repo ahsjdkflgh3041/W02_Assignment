@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 
 public class SMGhostRecorder : MonoBehaviour
 {
-    #region PublicVariables
-    #endregion
+	#region PublicVariables
+	#endregion
 
-    #region PrivateVariables
+	#region PrivateVariables
+	[SerializeField] private bool startWhenInput = true;
+
     private Vector2 _inputValue;
     private Vector2 inputValue
     {
@@ -19,7 +21,7 @@ public class SMGhostRecorder : MonoBehaviour
         set
         {
             // Input Value가 처음으로 바뀔 때 고스트가 움직이기 시작한다.
-            if (_inputValue == Vector2.zero)
+            if (_inputValue != value && startWhenInput)
             {
                 ghostManager.SetStart();
             }
@@ -28,9 +30,14 @@ public class SMGhostRecorder : MonoBehaviour
     }
 
     [SerializeField] private SMGhostManager ghostManager;
-    #endregion
+	#endregion
 
-    #region PublicMethod
+	#region PublicMethod
+	public void SetStartWhenInput()
+	{
+		startWhenInput = true;
+	}
+
     public void SetInput(Vector2 _input)
     {
         inputValue = _input;
