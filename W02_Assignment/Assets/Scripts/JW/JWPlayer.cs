@@ -15,13 +15,30 @@ public class JWPlayer : MonoBehaviour
 	private JWJump jump;
 	private JWDash dash;
 
+	private bool canAct = true;
+
 	[SerializeField] private CheckPoint checkPoint;
 	#endregion
 
 	#region PublicMethod
+	public void CanAct()
+	{
+		canAct = true;
+	}
+	public void CantAct(float _duration)
+	{
+		canAct = false;
+		Invoke(nameof(CanAct), _duration);
+	}
+	public void CantAct()
+	{
+		canAct = false;
+	}
 	public void Die()
 	{
+		GameManager.instance.OnPlayerDead();
 		Respawn();
+		CantAct(1.3f);
 	}
 	public void Respawn()
 	{
@@ -34,6 +51,7 @@ public class JWPlayer : MonoBehaviour
 			transform.position = Vector3.zero + Vector3.up * 2f;
 		}
 		Physics.SyncTransforms();
+		dash.RestoreDash();
 	}
 	public CheckPoint GetRespawnPoint() => checkPoint;
 	public void SetRespawnPoint(CheckPoint _point)
@@ -56,14 +74,20 @@ public class JWPlayer : MonoBehaviour
 	}
 	private void OnMove(InputValue value)
 	{
+		if (canAct == false)
+			return;
 		move.Move(value.Get<Vector2>());
 	}
 	private void OnJump(InputValue value)
 	{
+		if (canAct == false)
+			return;
 		jump.Jump();
 	}
 	private void OnDash(InputValue value)
 	{
+		if (canAct == false)
+			return;
 		dash.Dash();
 	}
 	#endregion

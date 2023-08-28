@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPoint : PlatformLandingEvent
+public class CheckPoint : TriggerPlayerInEvent
 {
 	#region PublicVariables
 	#endregion
@@ -36,7 +36,7 @@ public class CheckPoint : PlatformLandingEvent
 	{
 		transform.parent.TryGetComponent(out anim);
 	}
-	protected override void OnPlayerLanding(JWPlayer _player)
+	protected override void OnPlayerIn(JWPlayer _player)
 	{
 		CheckPointOn(_player);
 	}
