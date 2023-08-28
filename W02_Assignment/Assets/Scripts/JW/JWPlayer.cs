@@ -55,7 +55,7 @@ public class JWPlayer : MonoBehaviour
 			transform.position = Vector3.zero + Vector3.up * 2f;
 		}
 		Physics.SyncTransforms();
-		dash.RestoreDash();
+		dash.ResetDash();
 	}
 	public CheckPoint GetRespawnPoint() => checkPoint;
 	public void SetRespawnPoint(CheckPoint _point)

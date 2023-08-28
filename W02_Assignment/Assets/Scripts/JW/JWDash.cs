@@ -38,6 +38,12 @@ public class JWDash : MonoBehaviour
 	{
 		isReady = true;
 	}
+	public void ResetDash()
+	{
+		isReady = true;
+		rendBody.material.color = colorIdle;
+		rendGoggle.material.color = colorGoggleIdle;
+	}
 	#endregion
 
 	#region PrivateMethod
