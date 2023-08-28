@@ -14,7 +14,7 @@ public class SMKey : MonoBehaviour
 		}
 		set
 		{
-			if (value != _isCollected)
+			if (value != _isCollected && value)
 			{
 				door.CheckEveryKey();
 				_isCollected = value;

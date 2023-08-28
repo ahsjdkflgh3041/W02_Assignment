@@ -22,8 +22,6 @@ public class SMFollowingGhostController : SMGhostController
 		if (player != null)
 		{
 			player.Die();
-			ghostManager.startRecording = false;
-			ghostManager.ResetGhosts();
 		}
 	}
 	#endregion
