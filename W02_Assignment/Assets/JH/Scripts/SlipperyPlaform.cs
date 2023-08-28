@@ -27,8 +27,6 @@ public class SlipperyPlaform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTrigger");
-
         if (other.gameObject.CompareTag("Player"))
         {
 

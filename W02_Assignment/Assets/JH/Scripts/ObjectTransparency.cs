@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ObjectTransparency : MonoBehaviour
@@ -118,6 +119,7 @@ public class ObjectTransparency : MonoBehaviour
         float distance = Vector3.Distance(startPosition, endPosition); // 두 지점 사이의 거리 계산
 		int layerMask = 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Ground");
         RaycastHit[] hits = Physics.RaycastAll(ray, distance, ~layerMask);
+        Debug.DrawLine(startPosition, endPosition, Color.red);
         foreach (RaycastHit hit in hits)
         {
             Renderer hitRenderer = hit.collider.GetComponent<Renderer>();
