@@ -703,4 +703,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36bd495c33049c4481e2c29555cf18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startWhenInput: 1
   ghostManager: {fileID: 0}
