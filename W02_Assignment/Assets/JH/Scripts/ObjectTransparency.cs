@@ -77,7 +77,7 @@ public class ObjectTransparency : MonoBehaviour
 		player = GameManager.instance.GetPlayer().transform;
 		playerCamera = GameManager.instance.GetMainCamera().transform;
 	}
-	private void FixedUpdate()
+	private void Update()
     {
         Vector3 headPosition = player.position + player.up * headPos;
         Vector3 feetPosition = player.position + player.up * feetPos;
