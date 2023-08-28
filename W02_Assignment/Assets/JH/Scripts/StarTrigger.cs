@@ -27,7 +27,7 @@ public class StarTrigger : MonoBehaviour
 #region PrivateMethods
     void Start()
     {
-        startTime = Time.time;
+
         originPosition = hiddenStar.position;
     }
     void Update()
@@ -38,7 +38,7 @@ public class StarTrigger : MonoBehaviour
             if(elapsedTime <= duration)
             {
                 float t = elapsedTime / duration;
-                hiddenStar.position = Vector3.Lerp(originPosition, targetPosition, t) + Vector3.down * (speed * t * Time.deltaTime);
+                hiddenStar.position = Vector3.Lerp(initialPosition, targetPosition, t) + Vector3.down * (speed * t * Time.deltaTime);
             }
             else
             {
@@ -52,6 +52,7 @@ public class StarTrigger : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             Debug.Log("OnTrigger");
+            startTime = Time.time;
             isStart = true;
             initialPosition = hiddenStar.position;
             targetPosition = gameObject.transform.position;
