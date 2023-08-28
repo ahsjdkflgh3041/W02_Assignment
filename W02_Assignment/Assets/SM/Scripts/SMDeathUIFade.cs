@@ -22,6 +22,11 @@ public class SMDeathUIFade : MonoBehaviour
     {
         player.Respawn();
     }
+
+    public void MovePlayer()
+    {
+        player.CanAct();
+    }
     #endregion
 
     #region PrivateMethod

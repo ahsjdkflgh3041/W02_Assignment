@@ -24,15 +24,18 @@ public class JWPlayer : MonoBehaviour
 	public void CanAct()
 	{
 		canAct = true;
+		rb.SetBodyType(JWRigidBody.EBodyType.Dynamic);
 	}
 	public void CanNotAct(float _duration)
 	{
 		canAct = false;
+		rb.SetBodyType(JWRigidBody.EBodyType.Static);
 		Invoke(nameof(CanAct), _duration);
 	}
 	public void CanNotAct()
 	{
 		canAct = false;
+		rb.SetBodyType(JWRigidBody.EBodyType.Static);
 	}
 	public void Die()
 	{
