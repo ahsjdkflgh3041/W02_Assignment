@@ -41,6 +41,7 @@ public class JWPlayer : MonoBehaviour
 	public void Die()
 	{
 		GameManager.instance.OnPlayerDead();
+		rb.DashEnd();
 		Respawn();
 		CanNotAct();
 	}

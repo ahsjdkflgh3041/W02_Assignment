@@ -27,7 +27,6 @@ public class ObjectTransparency : MonoBehaviour
     #endregion
 
     #region PublicMethods
-    //Rendering Mode 변경
     public static void ChangeRenderMode(Material standardShaderMaterial, BlendMode blendMode)
     {
         switch (blendMode)
@@ -117,7 +116,7 @@ public class ObjectTransparency : MonoBehaviour
     {
         Vector3 rayDirection = endPosition - startPosition;
         Ray ray = new Ray(startPosition, rayDirection);
-        float distance = Vector3.Distance(startPosition, endPosition);
+        float distance = Vector3.Distance(startPosition, endPosition); // 두 지점 사이의 거리 계산
 		int layerMask = 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Ground");
         RaycastHit[] hits = Physics.RaycastAll(ray, distance, ~layerMask);
         Debug.DrawLine(startPosition, endPosition, Color.red);
