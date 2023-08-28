@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 87f0fd51bb291f24cb604014180c8cf2, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: f5d624d5859d0ce4d8ff8df202c5f342, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 1227540284}
   - component: {fileID: 1227540283}
   - component: {fileID: 1227540282}
+  - component: {fileID: 1227540286}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -402,6 +403,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1227540286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227540281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350490dea39f5204e88b36c10a1a8ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1311188176
 GameObject:
   m_ObjectHideFlags: 0
