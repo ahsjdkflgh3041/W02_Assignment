@@ -14,6 +14,7 @@ public class JWPlayer : MonoBehaviour
 	private JWMove move;
 	private JWJump jump;
 	private JWDash dash;
+	private SMGhostRecorder recorder;
 
 	private bool canAct = true;
 
@@ -74,12 +75,17 @@ public class JWPlayer : MonoBehaviour
 		TryGetComponent(out move);
 		TryGetComponent(out jump);
 		TryGetComponent(out dash);
+		TryGetComponent(out recorder);
 	}
 	private void OnMove(InputValue value)
 	{
 		if (canAct == false)
 			return;
 		move.Move(value.Get<Vector2>());
+		if (recorder != null)
+		{
+			recorder.SetInput(value.Get<Vector2>());
+		}
 	}
 	private void OnJump(InputValue value)
 	{
