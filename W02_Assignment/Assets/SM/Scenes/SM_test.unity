@@ -173,32 +173,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8528fe089157b740bdeabf6f1f4cf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &58593006 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5090403152709316819, guid: d6a50f5fb170ffe40a269d72ff2fa742, type: 3}
-  m_PrefabInstance: {fileID: 1009543874}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &58593012 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 599123993, guid: d6a50f5fb170ffe40a269d72ff2fa742, type: 3}
   m_PrefabInstance: {fileID: 1009543874}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58593006}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 451f2696348329d4291cadae72759af0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &58593013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58593006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94410f5616744046bf5e89f71257864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &69231657
@@ -4615,7 +4598,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 599123993, guid: d6a50f5fb170ffe40a269d72ff2fa742, type: 3}
       propertyPath: playDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 599123993, guid: d6a50f5fb170ffe40a269d72ff2fa742, type: 3}
       propertyPath: ghostControllers.Array.size
@@ -10832,10 +10815,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 290963724, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 290963728, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
       propertyPath: starData
       value: 
       objectReference: {fileID: 811356775}
+    - target: {fileID: 290963728, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
+      propertyPath: targetScene
+      value: JHTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 734394979, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
+      propertyPath: m_text
+      value: "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4!"
+      objectReference: {fileID: 0}
     - target: {fileID: 4091408683139205146, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
       propertyPath: player
       value: 

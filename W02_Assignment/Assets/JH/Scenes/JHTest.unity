@@ -3409,6 +3409,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 514899869}
     m_Modifications:
+    - target: {fileID: 290963728, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
+      propertyPath: starData
+      value: 
+      objectReference: {fileID: 514899868}
+    - target: {fileID: 290963728, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
+      propertyPath: targetScene
+      value: SM_Ending
+      objectReference: {fileID: 0}
     - target: {fileID: 4091408683139205146, guid: 116707a1d388b4a429646e55a51609dd, type: 3}
       propertyPath: player
       value: 

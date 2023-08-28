@@ -29,6 +29,8 @@ public class SMEndSetter : MonoBehaviour
 
     private void OnEnable()
     {
+        if (isInputKey)
+            return;
         player = GameObject.FindAnyObjectByType<JWPlayer>();
         text.text = "X " + starData.GetObtainedStarCount() + " / " + starData.GetTotalStarCount();
         player.CanNotAct();
