@@ -23,6 +23,7 @@ public class JWPlayer : MonoBehaviour
 	#region PublicMethod
 	public void Die()
 	{
+		GameManager.instance.OnPlayerDead();
 		Respawn();
 	}
 	public void Respawn()
